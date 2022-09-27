@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+}
+.login_block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login_block form{
+    width: 65%;
+}
+.login_block label,
+.login_block input{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.login_block button{
+    width: 50%;
+}
+
+
+@media only screen and (max-width: 768px){
+    .login_block form{
+        width: 100%;
+    }
+}
