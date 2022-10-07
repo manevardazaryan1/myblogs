@@ -1,0 +1,63 @@
+{% extends 'main/base.html' %}
+
+{% block title %} myblogs {% endblock %}
+
+{% block content %} 
+    <div class="container">
+        <div class="post_detail_block">
+            <div class="post_detail_content">
+                <div class="post_detail_title">   
+                    <h1>{{ post.title }}</h1>
+                </div>
+                <div class="post_detail_description">   
+                    <p>{{ post.description }}</p>
+                </div>
+                <div class="post_detail_owner">   
+                    <p>{{ post.owner|upper }}</p>
+                </div>
+            </div>
+            <div class="post_detail_img">   
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="" class="blog_img">
+                {% endif %}
+            </div>
+        </div>
+
+        {% if posts %}
+            <div class = 'row posts_row justify-content-center mt-5'>
+                {% for post in posts %}
+                    <div class="col-lg-3 col-md-4 col-sm-6 col- mb-3">
+                        <div class="article">
+                            {% if post.image %}
+                                <div class="post_img">
+                                    <img src="{{ post.image.url }}" alt="" class="blog_img">
+                                </div>
+                            {% endif %}
+                            <div class="post_content">
+                                <div class="post_title">
+                                    <h4>{{post.title}}</h4>
+                                </div>
+                                <div class="post_description">
+                                    <p>{{post.description | truncatewords:10 }}</p>
+                                </div>
+                                <div class="post_details">
+                                    <a href='{% url "post_detail" post.id %}' class='btn details_btn'>Details <i class="fa-solid fa-arrow-right-long"></i></a>
+                                </div>
+                                <div class="post_owner">
+                                    <p>{{ post.owner|upper }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty">
+                <p>0 Posts</p>
+            </div>
+        {% endif %}
+
+
+
+    </div>
+{% endblock %}

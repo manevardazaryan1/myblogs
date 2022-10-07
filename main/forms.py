@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
+from .models import Blog
+from django.forms import ModelForm, TextInput, Textarea, ImageField
 # Create your forms here.
 
 class NewUserForm(UserCreationForm):
@@ -11,16 +12,17 @@ class NewUserForm(UserCreationForm):
 		model = User
 		fields = ('username', 'email', 'password1', 'password2')
 
-		widget = {
-			'username': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
-            'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
-            'password2': forms.EmailInput(attrs={'class': 'form-control'})
-		}
-
 	def save(self, commit=True):
 		user = super(NewUserForm, self).save(commit=False)
 		user.email = self.cleaned_data['email']
 		if commit:
 			user.save()
 		return user
+
+class BlogForm(ModelForm):
+	class Meta:
+		model = Blog
+		fields = ['title','description','image']
+		queryset = Blog.objects.all()
+
+

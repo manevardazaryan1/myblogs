@@ -1,0 +1,10 @@
+.search{
+    background: #6528e0;
+}
+
+.main{
+    background: url('/static/main/images/log_reg/log_reg.png'),linear-gradient(to bottom, #6528e0, #ffe484);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top right;
+}

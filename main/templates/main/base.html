@@ -4,37 +4,70 @@
     <head>
         <meta charset='UTF-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel="icon" href='{% static "main/images/favicon/favicon.ico" %}' type='image/x-icon'>
+        <link rel="shortcut icon" href='{% static "main/images/favicon/favicon.ico" %}' type='image/x-icon'>
         <link rel='stylesheet' href='{% static "main/css/style.css" %}'>
-        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css'>
-        <title>{% block title %} {% endblock %}</title>
+        <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT' crossorigin='anonymous'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+        {% if request.resolver_match.view_name == 'login' or request.resolver_match.view_name == 'register'  or request.resolver_match.view_name == 'add_post' or request.resolver_match.view_name == 'blog_update' %}
+            <link rel='stylesheet' href='{% static "main/css/log_reg.css" %}'>
+        {% endif %}
+        <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-        <header class='p-3 text-bg-dark'>
+        <header class=''>
             <div class='container'>
-                <div class='d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start'>
-                    <ul class='nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0'>
-                        <li><a href='{% url "home" %}' class='nav-link px-2 text-secondary'>Home</a></li>
-                        {% if user.is_authenticated %}
-                        <li class='nav-item'>
-                          <a class='nav-link' href='/logout'>Logout</a>
-                        </li>
-                        <li class='nav-item'>
-                          <a class='nav-link px-2 text-secondary' href='#'>Welcome, {{user.username}}</a>
-                        </li>
-                  
-                        {% else %}
-                  
-                        <li class='nav-item'>
-                          <a class='nav-link px-2 text-secondary' href='/login'>Login</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
+                <nav class='navbar navbar-expand-lg'>
+                    <div class='container-fluid'>
+                        <div class="">
+                            <a class='navbar-brand' href='{% url "home" %}'>
+                            <img src='{% static "main/images/logo/logo.png" %}' alt='myblogs' class='logo'>
+                            </a>
+                        </div>
+                        <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavDarkDropdown' aria-controls='navbarNavDarkDropdown' aria-expanded='false' aria-label='Toggle navigation'>
+                            <span class='navbar-toggler-icon'></span>
+                        </button>
+                        <div class='collapse navbar-collapse d-lg-flex justify-content-end nav_col ' id='navbarNavDarkDropdown'>
+                            <ul class='navbar-nav'>
+                                <li class='nav-item'>
+                                    <a class='nav-link' href='{% url "home" %}'><i class="fa-solid fa-house"></i> Home</a>
+                                </li>
+                                {% if user.is_authenticated %}
+                                    <li class='nav-item'>
+                                        <a class='nav-link ' href='{% url "blogs" %}'><i class="fa-solid fa-book-open"></i> Posts</a>
+                                    </li>
+                                    <li class='nav-item'>
+                                        <a class='nav-link' href='{% url "add_post" %}'><i class="fa-solid fa-plus"></i> Create post</a>
+                                    </li>
+                                    <li class='nav-item dropdown'>
+                                    <a class='nav-link dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                        <i class="fa-regular fa-face-smile"></i> Welcome, {{user.username|upper}}
+                                    </a>
+                                    <ul class='dropdown-menu dropdown-menu-dark'>
+                                    <li><a class='dropdown-item ' href='/logout'><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                                    </ul>
+                                    </li>
+                                {% else %}
+                                    <li class='nav-item'>
+                                        <a class='nav-link' href='/login'><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </div>
         </header>
-
-        <div class='container'>
+        <div class="search">
+            <form class="d-flex search " role="search" method="post" action='{% url "search" %}'>
+                {% csrf_token %}
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name='search'>
+                <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+        <div class='main'>
             {% block content %} {% endblock %} 
         </div>
+        <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8' crossorigin='anonymous'></script>
     </body>
 </html>	

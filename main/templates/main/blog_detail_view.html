@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+
+{% block title %} myblogs {% endblock %}
+
+{% block content %} 
+    <div class="container">
+        <div class="post_detail_block {% if post.share %}shared_post{% endif %}">
+            <div class="post_detail_content">
+                <div class="post_detail_title">   
+                    <h1>{{ post.title }}</h1>
+                </div>
+                <div class="post_detail_description">   
+                    <p>{{ post.description }}</p>
+                </div>
+                <div class="post_detail_owner">   
+                    <p>{{ post.owner|upper }}</p>
+                </div>
+                <div class="post_change_link">
+                    <a href='{% url "blog_update" post.id %}' alt='Update'><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href='{% url "blog_delete" post.id %}' alt='Delete'><i class="fa-solid fa-delete-left"></i></a>
+                    {% if not post.share %}
+                        <a href='{% url "share_post" post.id %}' alt='Share'><i class="fa-solid fa-share-from-square"></i></a>
+                    {% endif %}
+                </div>
+
+            </div>
+            <div class="post_detail_img">   
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="" class="blog_img">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
