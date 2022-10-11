@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load social_share %}
 
 {% block title %} myblogs {% endblock %}
 
@@ -6,14 +7,16 @@
     <div class="container">
         <div class="post_detail_block {% if post.share %}shared_post{% endif %}">
             <div class="post_detail_content">
-                <div class="post_detail_title">   
-                    <h1>{{ post.title }}</h1>
-                </div>
-                <div class="post_detail_description">   
-                    <p>{{ post.description }}</p>
-                </div>
-                <div class="post_detail_owner">   
-                    <p>{{ post.owner|upper }}</p>
+                <div class="content_text">
+                    <div class="post_detail_title">   
+                        <h1>{{ post.title }}</h1>
+                    </div>
+                    <div class="post_detail_description">   
+                        <p>{{ post.description }}</p>
+                    </div>
+                    <div class="post_detail_owner">   
+                        <p>{{ post.owner|upper }}</p>
+                    </div>
                 </div>
                 <div class="post_change_link">
                     <a href='{% url "blog_update" post.id %}' alt='Update'><i class="fa-solid fa-pen-to-square"></i></a>
@@ -21,6 +24,8 @@
                     {% if not post.share %}
                         <a href='{% url "share_post" post.id %}' alt='Share'><i class="fa-solid fa-share-from-square"></i></a>
                     {% endif %}
+                    {% post_to_twitter "{{post.title}}. {{ post.description }}" object_or_url '<i class="fa-brands fa-twitter"></i>' %}
+                    {% post_to_telegram "{{post.title}}. {{ post.description }}" object_or_url '<i class="fa-brands fa-telegram"></i>' %}
                 </div>
 
             </div>
