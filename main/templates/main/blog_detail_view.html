@@ -1,40 +1,36 @@
 {% extends 'main/base.html' %}
 {% load social_share %}
-
 {% block title %} myblogs {% endblock %}
-
 {% block content %} 
-    <div class="container">
-        <div class="post_detail_block {% if post.share %}shared_post{% endif %}">
-            <div class="post_detail_content">
-                <div class="content_text">
-                    <div class="post_detail_title">   
-                        <h1>{{ post.title }}</h1>
+    <div class='container'>
+        <div class='post_detail_block {% if post.share %}shared_post{% endif %}'>
+            <div class='post_detail_content'>
+                <div class='content_text'>
+                    <div class='post_detail_title'>   
+                        <h1>{{ post.title | title}}</h1>
                     </div>
-                    <div class="post_detail_description">   
+                    <div class='post_detail_description'>   
                         <p>{{ post.description }}</p>
                     </div>
-                    <div class="post_detail_owner">   
-                        <p>{{ post.owner|upper }}</p>
+                    <div class='post_detail_owner'>   
+                        <p><i class='fa-solid fa-feather'></i> Author - {{ post.owner|capfirst }}</p>
                     </div>
                 </div>
-                <div class="post_change_link">
-                    <a href='{% url "blog_update" post.id %}' alt='Update'><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a href='{% url "blog_delete" post.id %}' alt='Delete'><i class="fa-solid fa-delete-left"></i></a>
+                <div class='post_change_link'>
+                    <a href='{% url "blog_update" post.id %}' alt='Update'><i class='fa-solid fa-pen-to-square'></i></a>
+                    <a href='{% url "blog_delete" post.id %}' alt='Delete'><i class='fa-solid fa-delete-left'></i></a>
                     {% if not post.share %}
-                        <a href='{% url "share_post" post.id %}' alt='Share'><i class="fa-solid fa-share-from-square"></i></a>
+                        <a href='{% url "share_post" post.id %}' alt='Share'><i class='fa-solid fa-share-from-square'></i></a>
                     {% endif %}
                     {% post_to_twitter "{{post.title}}. {{ post.description }}" object_or_url '<i class="fa-brands fa-twitter"></i>' %}
                     {% post_to_telegram "{{post.title}}. {{ post.description }}" object_or_url '<i class="fa-brands fa-telegram"></i>' %}
                 </div>
-
             </div>
-            <div class="post_detail_img">   
+            <div class='post_detail_img'>   
                 {% if post.image %}
-                    <img src="{{ post.image.url }}" alt="" class="blog_img">
+                    <img src='{{ post.image.url }}'>
                 {% endif %}
             </div>
         </div>
     </div>
-
 {% endblock %}

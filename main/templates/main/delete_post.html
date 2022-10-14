@@ -1,15 +1,13 @@
 {% extends 'main/base.html' %}
-
 {% block title %} myblogs {% endblock %}
-
 {% block content %} 
-    <div class="container">
-        <div class="delete_post_block">
+    <div class='container'>
+        <div class='delete_post_block'>
             <h1>Delete post</h1>
             <h4>Are you shure?</h4>
             <form action='' method='post'>
                 {% csrf_token %}
-                <button type="submit" class='btn btn-danger'>Delete <i class="fa-solid fa-delete-left"></i></button>
+                <button type='submit' class='btn'>Delete <i class='fa-solid fa-delete-left'></i></button>
             </form>
         </div>
     </div>

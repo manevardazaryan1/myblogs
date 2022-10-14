@@ -1,22 +1,18 @@
 {% extends "main/base.html" %}
-
 {% block title %} myblogs-login {% endblock %}
-
 {% block content %}      
-
 {% load crispy_forms_tags %}
-<div class="log_reg_container">
+<div class='log_reg_container'>
   <div class='log_reg_block'>
-    <div class='container py-5 login_block'>
+    <div class='container my-lg-5 my-3 login_block'>
       <h1 class='log_reg_title'>Login</h1>
       <form method='POST'>
         {% csrf_token %}
         {{ login_form|crispy }}
-        <button class='btn mt-3 submit_btn' type='submit'>Login <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+        <button class='btn mt-3 submit_btn' type='submit'>Login <i class='fa-solid fa-arrow-right-to-bracket'></i></button>
       </form>
       <p class='text-center mt-5'>Don't have an account? <a href='/register'>Create an account</a>.</p>
     </div>
   </div>
 </div>
-
 {% endblock %}

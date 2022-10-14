@@ -1,19 +1,16 @@
 {% extends 'main/base.html' %}
-
 {% block title %} myblogs-add-post {% endblock %}
-
 {% block content %} 
-
     <div class='container'>
-        <h1 class="text-center">Update</h1>
-        <div class="create_post_block"> 
+        <h1 class='text-center'>Update Post</h1>
+        <div class='create_post_block'> 
             <form action='' method='post' enctype='multipart/form-data' class='create_post_block'>
                 {% csrf_token %}
                 {{ form.title }}
                 {{ form.description }}
                 {{ form.image }}
                 <span>{{ error }}</span>
-                <button type="submit" class='btn'>Update <i class="fa-solid fa-plus"></i></button>
+                <button type='submit' class='btn update_btn'>Update <i class='fa-solid fa-plus'></i></button>
             </form>
         </div>
     </div>

@@ -1,68 +1,90 @@
 {% extends 'main/base.html' %}
-
+{% load static %}
 {% block title %} myblogs {% endblock %}
-
 {% block content %} 
-    <div class="container">
-        <h1 class="text-center mb-lg-5 mb-3">My Blogs</h1>       
+    <div class='container'>
+      <div class='search'>
+        <form class='search' autocomplete='off'>
+            <div class='autocomplete'>
+                <input type='text' id='filter' onkeyup='filter_search()' placeholder='Search post...' class='form-control me-2'>
+            </div>
+        </form>
+      </div>
+        <h1 class="text-center mb-lg-5 mb-3">My Posts</h1>    
         {% if posts %}
             <div class = 'row posts_row'>
                 {% for post in posts %}
-                    <div class="col-lg-3 col-md-4 col-sm-6 col- mb-3">
-                        <div class="article {% if post.share %}shared{% endif %}">
+                    <div class='col-lg-3 col-md-4 col-sm-6 col- mb-3 post'>
+                        <div class='article {% if post.share %}shared{% endif %}''>
                             {% if post.image %}
-                                <div class="post_img">
-                                    <img src="{{ post.image.url }}" alt="" class="blog_img">
+                                <div class='post_img'>
+                                    <img src='{{ post.image.url }}' class='blog_img'>
                                 </div>
                             {% endif %}
-                            <div class="post_content">
-                                <div class="post_title">
-                                    <h4>{{post.title}}</h4>
+                            <div class='post_content'>
+                                <div class='post_title'>
+                                    <h4>{{post.title | title | truncatechars:15}}</h4>
                                 </div>
-                                <div class="post_description">
-                                    <p>{{post.description | truncatewords:10 }}</p>
+                                <div class='post_description'>
+                                    <p>{{post.description | truncatechars:15 }}</p>
                                 </div>
-                                <div class="post_details">
-                                    <a href='{% url "blog_detail" post.id %}' class='btn details_btn'>Details <i class="fa-solid fa-arrow-right-long"></i></a>
+                                <div class='post_owner'>
+                                  <p><i class='fa-solid fa-feather'></i> <span> Author - {{ post.owner|capfirst }} </span></p>
                                 </div>
-                                <div class="post_owner">
-                                    <p>{{ post.owner|upper }}</p>
-                                </div>
+                            </div>
+                            <div class='post_details'>
+                              <a href='{% url "blog_detail" post.id %}' class='btn details_btn'>Details <i class='fa-solid fa-arrow-right-long'></i></a>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
         {% else %}
-            <div class="empty">
+            <div class='empty'>
                 <p>0 Posts</p>
             </div>
         {% endif %}
-
-
-      <nav aria-label="Page navigation example">
-        {% if posts.has_other_pages %}
-        <ul class="pagination">
-          {% if posts.has_previous %}
-            <li class="page-item"><a href="?page={{ users.previous_page_number }}" class="page-link">&laquo;</a></li>
-          {% else %}
-            <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
-          {% endif %}
-          {% for i in posts.paginator.page_range %}
-            {% if posts.number == i %}
-              <li class="active page-item"><span class="page-link">{{ i }}</span></li>
-            {% else %}
-              <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
-            {% endif %}
-          {% endfor %}
-          {% if posts.has_next %}
-            <li class="page-item"><a href="?page={{ users.next_page_number }}" class="page-link">&raquo;</a></li>
-          {% else %}
-            <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
-          {% endif %}
-        </ul>
-        {% endif %}  
-      </nav>      
-
     </div>
+
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src='{% static "main/js/jquery.waypoints.min.js" %}'></script>
+    <script src='{% static "main/js/infinite.min.js" %}'></script>
+    <script src='{% static "main/js/autocomplete.js" %}'></script>
+    <script>
+
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0],
+        handler: function(direction) {
+
+    },
+    offset: 'bottom-in-view',
+
+    onBeforePageLoad: function () {
+    $('.spinner-border').show();
+    },
+    onAfterPageLoad: function () {
+    $('.spinner-border').hide();
+    }
+
+    });
+
+    function filter_search() {
+        var post, input, filter;
+        input = document.getElementById('filter');
+        filter = input.value.toUpperCase();
+        title = document.querySelectorAll('.post_title h4');
+        description = document.querySelectorAll('.post_description p');
+        owner = document.querySelectorAll('.post_owner p span');
+        for (i = 0; i < title.length; i++) {
+            title_text = title[i].textContent.toUpperCase()
+            description_text = description[i].textContent.toUpperCase()
+            owner_text = owner[i].textContent.toUpperCase()
+            if(title_text.toUpperCase().indexOf(filter) > -1 || description_text.indexOf(filter) > -1 || owner_text.indexOf(filter) > -1){
+                title[i].closest('.post').style.display = "";
+            }else{
+                title[i].closest('.post').style.display = 'none'; 
+            }
+        }
+    }
+    </script>
 {% endblock %}

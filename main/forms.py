@@ -20,9 +20,10 @@ class NewUserForm(UserCreationForm):
 		return user
 
 class BlogForm(ModelForm):
+
 	class Meta:
 		model = Blog
 		fields = ['title','description','image']
 		queryset = Blog.objects.all()
-
-
+	title = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Title'}))
+	description = forms.CharField(widget=forms.Textarea(attrs={'placeholder':'Description'}))
