@@ -43,7 +43,7 @@
                                     <a class='nav-link dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
                                          Welcome, {{user.username|capfirst}}
                                     </a>
-                                    <ul class='dropdown-menu dropdown-menu-dark'>
+                                    <ul class='dropdown-menu dropdown-menu-dark login_logout_drop'>
                                     <li><a class='dropdown-item ' href='/logout'><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
                                     </ul>
                                     </li>
@@ -70,6 +70,10 @@
         <div class='main'>
             {% block content %} {% endblock %} 
         </div>
+        <footer>
+            {% now "Y" as current_year %}
+            <p class="copyright"> &copy{{ current_year }} Armenian Code Academy | Intro Python</p>
+        </footer>
         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8' crossorigin='anonymous'></script>
     </body>
-</html>	
+</html>	    

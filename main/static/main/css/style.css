@@ -15,6 +15,10 @@ header{
     background: #6528e0;
 }
 
+.main{
+    padding-bottom: 105px;
+}
+
 .log_reg_block{
     width: 100%;
 }
@@ -117,6 +121,7 @@ header{
     color:  #6528e0 !important;
 }
 
+.btn_create_link,
 .delete_post_block button:hover,
 .delete_post_block button{
     background: #6528e0 !important;
@@ -125,6 +130,7 @@ header{
 
 .post_description{
     color: #000;
+    min-height: 65px;
 }
 
 .details_btn:hover {
@@ -178,8 +184,8 @@ header{
 
 .post_details{
     display: flex;
-    justify-content: center;
     align-items: center;
+    margin-left: 10px;
 }
 
 .post_content{
@@ -188,7 +194,6 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
 }
 
 .post_content p{
@@ -203,6 +208,7 @@ header{
     background-color: #fff;
     box-shadow: rgb(0 0 0 / 11%) 1px 1px 3px;
     border-radius: 10px;
+    height: 100%;
 }
 
 .navbar button{
@@ -240,6 +246,7 @@ header{
     align-items: center;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 .empty p{
@@ -474,8 +481,30 @@ ul.pagination{
     margin-bottom: 20px;
 }
 
+.login_logout_drop{
+    padding: 0 !important;
+}
 
-@media only screen and (max-width: 982px){
+footer{
+    background: #000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+.copyright{
+    color: #fff;
+    margin-bottom: 0 !important;
+}
+
+@media only screen and (max-width: 992px){
     .login_block{
         width: 80% !important;
     }
@@ -486,6 +515,10 @@ ul.pagination{
 
     .create_post_block{
         width: 100%;
+    }
+
+    .login_logout_drop{
+        width: fit-content;
     }
 }
 

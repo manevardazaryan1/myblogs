@@ -2,6 +2,9 @@
 {% load static %}
 {% block title %} myblogs {% endblock %}
 {% block content %} 
+
+<!--Shared posts-->
+
     <div class='search'>
         <form class='search' autocomplete='off'>
             <div class='autocomplete'>
@@ -26,7 +29,7 @@
                                     <h4>{{post.title | title | truncatechars:15}}</h4>
                                 </div>
                                 <div class='post_description'>
-                                    <p>{{post.description | truncatechars:15 }}</p>
+                                    <p>{{post.description | truncatechars:45}}</p>
                                 </div>
                                 <div class='post_owner'>
                                     <p><i class='fa-solid fa-feather'></i> <span>Author - {{ post.owner | capfirst }} </span></p>
@@ -41,7 +44,7 @@
             </div>
         {% else %}
             <div class='empty'>
-                <p>0 Posts</p>
+                <p>There are no posts on 'a blog yet.</p>
             </div>
         {% endif %}
     </div>

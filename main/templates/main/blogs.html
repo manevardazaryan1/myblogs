@@ -2,14 +2,25 @@
 {% load static %}
 {% block title %} myblogs {% endblock %}
 {% block content %} 
+
+<!--User posts-->
+
     <div class='container'>
-      <div class='search'>
-        <form class='search' autocomplete='off'>
-            <div class='autocomplete'>
-                <input type='text' id='filter' onkeyup='filter_search()' placeholder='Search post...' class='form-control me-2'>
-            </div>
-        </form>
-      </div>
+        <div class='search'>
+            {% if posts %}
+                <form class='search' autocomplete='off'>
+                    <div class='autocomplete'>
+                        <input type='text' id='filter' onkeyup='filter_search()' placeholder='Search post...' class='form-control me-2'>
+                    </div>
+                </form>
+            {% else %}
+                <form class='d-flex search' role='search' method='post' action='{% url "search" %}'>
+                    {% csrf_token %}
+                    <input class='form-control me-2' type='search' placeholder='Search post...' aria-label='Search' name='search'>
+                    <button class='btn' type='submit'><i class='fa-solid fa-magnifying-glass'></i></button>
+                </form>
+            {% endif %}
+        </div>
         <h1 class="text-center mb-lg-5 mb-3">My Posts</h1>    
         {% if posts %}
             <div class = 'row posts_row'>
@@ -41,7 +52,8 @@
             </div>
         {% else %}
             <div class='empty'>
-                <p>0 Posts</p>
+                <div><p>There are no posts on 'a blog yet.</p></div>
+                <div><a href='{% url "add_post" %}' class='btn btn_create_link'>Create post <i class='fa-solid fa-plus'></i></a></div>
             </div>
         {% endif %}
     </div>

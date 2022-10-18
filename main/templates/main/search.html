@@ -2,6 +2,9 @@
 {% load static %}
 {% block title %} myblogs {% endblock %}
 {% block content %} 
+
+<!--Search result page-->
+
     <div class='container infinite-container'>
         <h1 class='text-center mb-lg-5 mb-3'>Search</h1>
         {% if posts %}
@@ -34,7 +37,7 @@
             </div>
         {% else %}
             <div class='empty'>
-                <p>0 Posts</p>
+                <p>Did not match any posts.</p>
             </div>
         {% endif %}
     </div>
