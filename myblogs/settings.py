@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['myblog-portfolio-webapp.herokuapp.com']
 
+CSRF_TRUSTED_ORIGINS = ['https://myblog-portfolio-webapp.herokuapp.com', 'https://www.myblog-portfolio-webapp.herokuapp.com']
 
 # Application definition
 
