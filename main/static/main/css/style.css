@@ -408,6 +408,7 @@ nav li a{
     box-shadow: rgb(0 0 0 / 11%) 1px 1px 3px;
     max-height: 300px;
     overflow-y: auto;
+    background: #fff;
 }
 
 .autocomplete-items div{
