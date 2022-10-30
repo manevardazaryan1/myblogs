@@ -557,6 +557,10 @@ footer{
         font-size: 14px;
         text-align: center;
     }
+
+    textarea.description + a{
+        font-size: 12px;
+    }
 }
 
 @media only screen and (max-width: 380px){
