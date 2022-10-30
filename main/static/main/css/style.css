@@ -558,7 +558,7 @@ footer{
         text-align: center;
     }
 
-    textarea.description + a{
+    textarea#id_description + a{
         font-size: 12px !important;
     }
 }
