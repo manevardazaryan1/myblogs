@@ -553,8 +553,16 @@ footer{
 }
 
 @media only screen and (max-width: 380px){
+    .copyright{
+        font-size: 14px;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 380px){
     .login_block form + p,
     .login_block form + a{
         font-size: 12px;
     }
 }
+
