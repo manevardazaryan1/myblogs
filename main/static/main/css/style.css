@@ -552,7 +552,7 @@ footer{
     }
 }
 
-@media only screen and (max-width: 380px){
+@media only screen and (max-width: 450px){
     .copyright{
         font-size: 14px;
         text-align: center;
