@@ -356,7 +356,8 @@ nav li a{
 }
  
 .autocomplete-items::-webkit-scrollbar-track{
-    border-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
     background: #f6f6f6;
 }
 
@@ -420,12 +421,10 @@ nav li a{
 }
 
 .autocomplete-items div:first-child{
-    border-top-right-radius: 10px;
     border-top-left-radius: 10px;
 }
 
 .autocomplete-items div:last-child{
-    border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 
