@@ -58,15 +58,6 @@
                 </nav>
             </div>
         </header>
-        {% if request.resolver_match.view_name != 'home' and request.resolver_match.view_name != 'blogs' %}      
-            <div class='search'>
-                <form class='d-flex search' role='search' method='post' action='{% url "search" %}'>
-                    {% csrf_token %}
-                    <input class='form-control me-2' type='search' placeholder='Search post...' aria-label='Search' name='search'>
-                    <button class='btn' type='submit'><i class='fa-solid fa-magnifying-glass'></i></button>
-                </form>
-            </div>
-        {% endif %}
         <div class='main'>
             {% block content %} {% endblock %} 
         </div>
