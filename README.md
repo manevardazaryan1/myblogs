@@ -1,3 +1,5 @@
+<a id='top'></a>
+
 # myblogs: A Personal Blogging App
 
 ### myblogs is a web application that allows you to easily create, manage, and share your blog posts.
@@ -43,3 +45,5 @@
     python manage.py runserver
 
 This command starts the Django development server, typically running at http://127.0.0.1:8000/ by default. You can access your Django application in a web browser at this URL.
+
+[Tap to Top ⬆](#top)
