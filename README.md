@@ -1,6 +1,6 @@
 # myblogs: A Personal Blogging App
 
-### myblogs is a mobile application that allows you to easily create, manage, and share your blog posts. With a user-friendly interface and powerful features, it's the perfect platform for anyone who wants to express themselves and connect with an audience.
+### myblogs is a web application that allows you to easily create, manage, and share your blog posts. With a user-friendly interface and powerful features, it's the perfect platform for anyone who wants to express themselves and connect with an audience.
 
 ![myblogs collage](main/static/main/images/README-Collage/blog-collage.jpg "myblogs app")
 
