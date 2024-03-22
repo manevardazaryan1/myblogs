@@ -1,6 +1,4 @@
-<a id='top'></a>
-
-# myblogs: A Personal Blogging App
+<h1><a id='top'>myblogs: A Personal Blogging App</a></h1>
 
 ### myblogs is a web application that allows you to easily create, manage, and share your blog posts.
 
