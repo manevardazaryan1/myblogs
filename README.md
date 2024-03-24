@@ -37,6 +37,7 @@
     pip install -r requirements.txt
 
 4. **Start the Development Server:**
+    cd [myblogs]
     python manage.py runserver
 
 This command starts the Django development server, typically running at http://127.0.0.1:8000/ by default. You can access your Django application in a web browser at this URL.
