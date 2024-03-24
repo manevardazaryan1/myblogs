@@ -36,10 +36,7 @@
 3. **Install Dependencies:**
     pip install -r requirements.txt
 
-4. **Run Database Migrations:**
-    python manage.py migrate
-
-5. **Start the Development Server:**
+4. **Start the Development Server:**
     python manage.py runserver
 
 This command starts the Django development server, typically running at http://127.0.0.1:8000/ by default. You can access your Django application in a web browser at this URL.
